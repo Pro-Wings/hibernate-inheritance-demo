@@ -9,21 +9,10 @@ import com.prowings.entity.FourWheeler;
 import com.prowings.entity.TwoWheeler;
 import com.prowings.entity.Vehicle;
 
-public class TestSigleTableStrategy {
+public class TestSigleTableStrategyFetch {
 	
 	public static void main(String[] args) {
 		
-//		Vehicle v = new Vehicle("Car");
-		
-		TwoWheeler tw = new TwoWheeler();
-		tw.setName("Yamaha");
-		tw.setSteeringTwoWheeler("yamaha handle");
-		tw.setStand("single side");
-		
-		FourWheeler fw = new FourWheeler();
-		fw.setName("Suzuki");
-		fw.setSteeringFourWheeler("Suzuki sport steering");
-		fw.setViper("Bosch");
 		
 		Configuration conf = new Configuration();
 		conf.configure();
@@ -31,9 +20,9 @@ public class TestSigleTableStrategy {
 		Session session = sf.openSession();
 		Transaction txn = session.beginTransaction();
 		
-//		session.save(v);
-		session.save(tw);
-		session.save(fw);
+		TwoWheeler tw = session.get(TwoWheeler.class, 2);
+		
+		System.out.println(tw);
 		
 		txn.commit();
 		session.close();
